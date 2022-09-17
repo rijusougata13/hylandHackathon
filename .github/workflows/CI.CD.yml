@@ -16,25 +16,25 @@ jobs:
 
     steps:
       - name: Checkout repository
-        working-directory: ./probook-client
+        # working-directory: ./probook-client
         uses: actions/checkout@v2
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        working-directory: ./probook-client
+        # working-directory: ./probook-client
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        working-directory: ./probook-client
+        # working-directory: ./probook-client
         run: npm install
 
       - name: Build
-        working-directory: ./probook-client
+        # working-directory: ./probook-client
         run: npm run build
 
       - name: Deploy
-        working-directory: ./probook-client
+        # working-directory: ./probook-client
         run: |
           git config --global user.name $user_name
           git config --global user.email $user_email
