@@ -1,4 +1,4 @@
-import { Button, CircularProgress, TextField } from "@mui/material";
+import { Button, CircularProgress, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -14,6 +14,7 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, isLoggedIn } = useSelector((state) => state.auth);
+  const [value, setValue] = React.useState('doctor');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,6 +84,27 @@ export default function RegisterForm() {
         type="password"
         required
       />
+       <FormControl>
+      <FormLabel id="demo-radio-buttons-group-label">Login as</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        // defaultValue="patient"
+        name="loginAs"
+        value={value}
+        onChange={(e) =>
+          {setValue(e.target.value);
+            setRegisterData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+          }))}
+        }
+     
+     >
+        <FormControlLabel value="patient" control={<Radio />} label="Patient" />
+        <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
+        {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
+      </RadioGroup>
+    </FormControl>
       <Button
         disabled={
           registerData.email.trimStart().length === 0 ||

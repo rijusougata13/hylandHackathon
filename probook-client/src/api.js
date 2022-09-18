@@ -9,6 +9,17 @@ export const addPost = async (postData) => {
   }
 };
 
+export const addResearch = async (researchData) => {
+  const newResearchData = { ...researchData, research: true }
+  try {
+    const { data } = await axios.post("/api/posts", newResearchData);
+    return data;
+  } catch (error) {
+    alert("Something went wrong.");
+  }
+};
+
+
 export const addComment = async (commentData) => {
   try {
     const { data } = await axios.post(

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { setAuth } from "./redux/authSlice";
+import Research from "./pages/Research";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ function App() {
       <PrivateRoute exact path="/profile/:id">
         <Layout>
           <Profile />
+        </Layout>
+      </PrivateRoute>
+      <PrivateRoute exact path="/research/:id">
+        <Layout>
+          <Research />
         </Layout>
       </PrivateRoute>
       <PrivateRoute exact path="/posts/:id">

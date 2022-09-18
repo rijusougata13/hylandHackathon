@@ -22,6 +22,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    loginAs: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );

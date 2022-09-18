@@ -142,6 +142,7 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
+            
             <ListItem
               button
               sx={{
@@ -159,6 +160,36 @@ export default function LeftSidebar() {
                     color: theme.palette.action.active,
                   }}
                   primary="Profile"
+                />
+              </Hidden>
+            </ListItem>
+          </NavLink>
+          <NavLink
+            to={`/research/${_id}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              backgroundColor: "inherit",
+            }}
+          >
+            
+            <ListItem
+              button
+              sx={{
+                borderRadius: "28px",
+                margin: ".5rem 0",
+              }}
+            >
+              <ListItemIcon>
+                <PersonOutlineIcon fontSize="medium" color="action" />
+              </ListItemIcon>
+              <Hidden lgDown>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: "18px",
+                    color: theme.palette.action.active,
+                  }}
+                  primary="Research"
                 />
               </Hidden>
             </ListItem>

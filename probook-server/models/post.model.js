@@ -10,6 +10,10 @@ const postSchema = new Schema(
       maxlength: 280,
       minlength: 5,
     },
+    research: {
+      type: Schema.Types.Boolean,
+      default: false,
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
