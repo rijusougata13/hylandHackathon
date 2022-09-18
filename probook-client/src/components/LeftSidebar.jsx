@@ -94,7 +94,7 @@ export default function LeftSidebar() {
               </Hidden>
             </ListItem>
           </NavLink>
-          <ListItem
+          {/* <ListItem
             button
             sx={{
               borderRadius: "28px",
@@ -113,7 +113,7 @@ export default function LeftSidebar() {
                 primary="Bookmarks"
               />
             </Hidden>
-          </ListItem>
+          </ListItem> */}
           <ListItem
             button
             sx={{
@@ -194,6 +194,51 @@ export default function LeftSidebar() {
               </Hidden>
             </ListItem>
           </NavLink>
+          
+
+
+
+
+
+
+
+          <NavLink
+            to={`/bookmarks/${_id}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              backgroundColor: "inherit",
+            }}
+          >
+            
+            <ListItem
+              button
+              sx={{
+                borderRadius: "28px",
+                margin: ".5rem 0",
+              }}
+            >
+              <ListItemIcon>
+                <PersonOutlineIcon fontSize="medium" color="action" />
+              </ListItemIcon>
+              <Hidden lgDown>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: "18px",
+                    color: theme.palette.action.active,
+                  }}
+                  primary="Bookmarks"
+                />
+              </Hidden>
+            </ListItem>
+          </NavLink>
+
+
+
+
+
+
+
           <ListItem
             id="basic-button"
             button

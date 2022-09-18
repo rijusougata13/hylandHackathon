@@ -82,7 +82,7 @@ export default function WhoToFollow({ user }) {
             }}
             variant="contained"
           >
-            Follow
+            Take Appointment
           </Button>
         </Grid>
       </Grid>

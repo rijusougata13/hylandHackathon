@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { setAuth } from "./redux/authSlice";
 import Research from "./pages/Research";
+import Prescriptions from "./components/Prescriptions";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,11 @@ function App() {
       <PrivateRoute exact path="/research/:id">
         <Layout>
           <Research />
+        </Layout>
+      </PrivateRoute>
+      <PrivateRoute exact path="/bookmarks/:id">
+        <Layout>
+          <Prescriptions />
         </Layout>
       </PrivateRoute>
       <PrivateRoute exact path="/posts/:id">

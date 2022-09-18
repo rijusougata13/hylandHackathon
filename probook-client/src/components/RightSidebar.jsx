@@ -41,6 +41,7 @@ export default function RightSidebar() {
 
   return (
     <Box sx={{ height: "100%" }}>
+      
       <Box paddingTop="10px">
         <Box
           width="100%"
@@ -152,7 +153,7 @@ export default function RightSidebar() {
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Who to follow
+            Nearby Doctors
           </Typography>
           <Box textAlign="center" marginTop="1rem">
             {(userStatus === "loading" || followingStatus === "loading") && (
@@ -162,7 +163,10 @@ export default function RightSidebar() {
           {userStatus === "success" &&
             showToFollow()
               .slice(0, 7)
-              .map((item) => <WhoToFollow key={item._id} user={item} />)}
+              .map((item) => 
+              item.loginAs==='doctor' &&
+              
+              <WhoToFollow key={item._id} user={item} />)}
         </Box>
       </Box>
     </Box>

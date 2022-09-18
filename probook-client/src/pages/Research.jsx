@@ -30,16 +30,26 @@ import {
   unfollowAccount,
   unfollowingAccount,
 } from "../api";
+import { getPosts } from "../redux/postSlice";
+
 import format from "date-fns/format";
 import Modal from "../components/Modal";
 const Research = () => {
     const { profile, status } = useSelector((state) => state.auth);
     const theme = useTheme();
     const [commentText, setCommentText] = useState("");
-    const { postDetails } = useSelector(
-        (state) => state.post
-      );
-    
+    const dispatch = useDispatch();
+    const {  posts,postDetails } = useSelector((state) => state.post);
+    useEffect(() => {
+      dispatch(getPosts());
+    }, [dispatch]);
+     
+      const { id } = useParams();
+      // const { _id } = JSON.parse(localStorage.getItem("login"));
+
+  useEffect(() => {
+    dispatch(getProfile(id));
+  }, [dispatch, id]);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -53,9 +63,13 @@ const Research = () => {
     setOpenModal(false);
   };
   const handleAddResearch = async () => {
-    const response = await addResearch({ id: postDetails._id, text: commentText });
+    const researchData = {
+      id: postDetails._id, text: commentText, research:true
+    }
+    const response = await addResearch(researchData);
     if (response) {
       setCommentText("");
+      dispatch(getPosts());
     }
   };
 
@@ -129,7 +143,25 @@ const Research = () => {
               </Button>
         </Grid>
       </Box>
-      <Box textAlign="center">
+
+      <Box height="92vh" sx={{ overflowY: "scroll" }}>
+       
+        <Box textAlign="center" marginTop="1rem">
+          {status === "loading" && (
+            <CircularProgress size={20} color="primary" />
+          )}
+        </Box>
+        {status === "success" &&
+          posts.map((post) => (
+
+          post.research &&
+ <Post key={post._id} post={post} />
+
+          //  { console.log(post)}
+ 
+          ))}
+      </Box>
+      {/* <Box textAlign="center">
         {status === "loading" && (
           <Box marginTop="1rem">
             <CircularProgress size={20} color="primary" />
@@ -199,7 +231,7 @@ const Research = () => {
               >
                 Unfollow
               </Button>
-            )} */}
+            )}
           </Box>
           <Box padding="10px 20px">
             <Typography variant="h6" sx={{ fontWeight: "500" }}>
@@ -245,13 +277,13 @@ const Research = () => {
             <Box display="flex">
               <Typography color="#555" marginRight="1rem">
                 <strong style={{ color: "black" }}>
-                  {/* {followingStatus === "success" && followings.length} */}
+                   {followingStatus === "success" && followings.length} 
                 </strong>
                 Following
               </Typography>
               <Typography color="#555" marginRight="1rem">
                 <strong style={{ color: "black" }}>
-                  {/* {followerStatus === "success" && followers.length} */}
+                  {/* {followerStatus === "success" && followers.length} 
                 </strong>
                 Followers
               </Typography>
@@ -275,7 +307,7 @@ const Research = () => {
               <Post key={post._id} post={post} profile={true} />
             ))}
         </Box>
-      )}
+      )} */}
     </Box>
     </div>
   )
