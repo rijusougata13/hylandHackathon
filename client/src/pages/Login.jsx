@@ -12,7 +12,7 @@ export default function Login() {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const theme = useTheme();
   return (
-        // #2699ad
+    // #2699ad
     <Box
       display="flex"
       justifyContent="center"
@@ -33,12 +33,16 @@ export default function Login() {
         }}
       >
         <Box textAlign="center" marginBottom="1rem">
-          <img src={LHC} alt="Logo" style={{width: "12em"}} />
+          <img src={LHC} alt="Logo" style={{ width: "12em" }} />
         </Box>
         {isLoginForm ? (
-          <Typography variant="h5" >Login to your account</Typography>
+          <Typography variant="h5" style={{ textAlign: "center" }}>
+            Login
+          </Typography>
         ) : (
-          <Typography variant="h5">Create a new account</Typography>
+          <Typography variant="h5" style={{ textAlign: "center" }}>
+            Create a new account
+          </Typography>
         )}
         {isLoginForm ? <LoginForm /> : <RegisterForm />}
         {isLoginForm ? (
