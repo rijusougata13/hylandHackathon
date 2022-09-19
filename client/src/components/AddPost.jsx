@@ -1,9 +1,14 @@
 import { Button, Grid, Input } from "@mui/material";
 import { Box, useTheme } from "@mui/system";
+import SendIcon from "@mui/icons-material/Send";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPost } from "../api";
 import { getPosts } from "../redux/postSlice";
+
+import { LHC, LG, LGsvg } from "../images";
 
 export default function AddPost() {
   const dispatch = useDispatch();
@@ -20,7 +25,7 @@ export default function AddPost() {
     <Box padding="1rem 1rem 0 1rem" borderBottom="1px solid #ccc">
       <Grid container>
         <Grid item sx={{ paddingRight: "1rem" }}>
-          <img src="/logo.png" alt="lgogo" width="50px" />
+          <img src={LGsvg} alt="logo" width="50px" />
         </Grid>
         <Grid item flexGrow="1">
           <Box padding=".5rem 0">
@@ -41,18 +46,31 @@ export default function AddPost() {
             paddingTop=".5rem"
             borderTop="1px solid #ccc"
           >
-            <Button
+            <IconButton
               onClick={handleAddPost}
               disabled={postText.trimStart().length === 0}
               variant="contained"
-              color="primary"
+              // endIcon={<SendIcon />}
               sx={{
-                borderRadius: theme.shape.borderRadius,
+                // borderRadius: theme.shape.borderRadius,
                 fontSize: "12px",
+                backgroundColor: "#2bc0d0",
               }}
             >
-              Post
-            </Button>
+              <SendIcon />
+            </IconButton>
+            <IconButton
+              aria-label="upload picture"
+              component="label"
+              onClick={handleAddPost}
+              sx={{
+                fontSize: "12px",
+                backgroundColor: "#2bc0d0",
+              }}
+            >
+              <input hidden accept="image/*" type="file" />
+              <PhotoCamera />
+            </IconButton>
           </Box>
         </Grid>
       </Grid>

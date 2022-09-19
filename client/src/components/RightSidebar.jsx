@@ -5,9 +5,11 @@ import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import WhoToFollow from "./WhoToFollow";
 import WhoToAppoint from './WhoToAppoint'
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getFollowings,getFollowers } from "../redux/followSlice";
 import { getProfile } from "../redux/authSlice";
+
+import { LHC, LG, LGsvg } from "../images";
 
 export default function RightSidebar() {
   const [query, setQuery] = React.useState("");
@@ -142,7 +144,7 @@ console.log(loginAs)
                       alignItems="center"
                     >
                       <Grid item sx={{ paddingRight: "12px" }}>
-                        <img src="/logo.png" width="50px" alt="logo" />
+                        <img src={LHC} width="50px" alt="logo" />
                       </Grid>
                       <Grid item>
                         <Grid container alignItems="center">

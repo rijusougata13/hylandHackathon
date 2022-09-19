@@ -14,16 +14,21 @@ import {
   useTheme,
 } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import ScienceIcon from "@mui/icons-material/Science";
+import SendIcon from "@mui/icons-material/Send";
+
 import { logout } from "../redux/authSlice";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Modal from "./Modal";
 import { getPosts } from "../redux/postSlice";
 import { addPost } from "../api";
+import { LHC, LG, LGsvg } from "../images";
+
 
 export default function LeftSidebar() {
   const theme = useTheme();
@@ -52,7 +57,7 @@ export default function LeftSidebar() {
   return (
     <>
       <Box sx={{ height: "100vh", maxWidth: "100%" }}>
-        <Box textAlign="center">
+        <Box textAlign="center" style={{ marginTop: "3em" }}>
           <Link
             to="/"
             style={{
@@ -61,7 +66,7 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
-            <img src="/logo.png" alt="logo" width="50px" />
+            <img src={LHC} alt="logo" width={120} />
           </Link>
         </Box>
         <List>
@@ -142,7 +147,6 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
-            
             <ListItem
               button
               sx={{
@@ -151,7 +155,7 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <PersonOutlineIcon fontSize="medium" color="action" />
+                <PersonIcon fontSize="medium" color="action" />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
@@ -172,7 +176,6 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
-            
             <ListItem
               button
               sx={{
@@ -181,7 +184,7 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <PersonOutlineIcon fontSize="medium" color="action" />
+                <ScienceIcon fontSize="medium" color="action" />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
@@ -194,13 +197,6 @@ export default function LeftSidebar() {
               </Hidden>
             </ListItem>
           </NavLink>
-          
-
-
-
-
-
-
 
           <NavLink
             to={`/bookmarks/${_id}`}
@@ -210,7 +206,6 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
-            
             <ListItem
               button
               sx={{
@@ -219,7 +214,7 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <PersonOutlineIcon fontSize="medium" color="action" />
+                <BookmarkIcon fontSize="medium" color="action" />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
@@ -232,12 +227,6 @@ export default function LeftSidebar() {
               </Hidden>
             </ListItem>
           </NavLink>
-
-
-
-
-
-
 
           <ListItem
             id="basic-button"
@@ -270,13 +259,15 @@ export default function LeftSidebar() {
             variant="contained"
             color="primary"
             fullWidth
+            endIcon={<SendIcon />}
             style={{
               borderRadius: "28px",
               padding: "10px",
               textTransform: "capitalize",
+              backgroundColor: "rgb(37, 150, 190)",
             }}
           >
-            Post
+            POST
           </Button>
         </Hidden>
         <Hidden lgUp>

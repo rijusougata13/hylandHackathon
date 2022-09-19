@@ -22,6 +22,8 @@ import { getPosts, updateLike } from "../redux/postSlice";
 import Modal from "./Modal";
 import { getProfile } from "../redux/authSlice";
 
+import { LHC, LG, LGsvg } from "../images";
+
 export default function Post({ post, profile }) {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
@@ -89,7 +91,7 @@ export default function Post({ post, profile }) {
           <Grid container flexWrap="nowrap">
             <Grid item sx={{ paddingRight: "1rem" }}>
               <Link to={`/profile/${post.author._id}`}>
-                <img src="/logo.png" alt="lgoog" width="50px" />
+                <img src={LHC} alt="lgoog" width="50px" />
               </Link>
             </Grid>
             <Grid item flexGrow="1">
@@ -202,7 +204,7 @@ export default function Post({ post, profile }) {
           <Box>
             <Grid container>
               <Grid item>
-                <img src="/logo.png" alt="logo" width="60px" />
+                <img src={LHC} alt="logo" width="60px" />
               </Grid>
               <Grid item flexGrow="1">
                 <Box padding=".5rem 0">

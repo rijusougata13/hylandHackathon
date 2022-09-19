@@ -4,6 +4,8 @@ import React from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
+import { LHC, LG, LGsvg } from "../images";
+
 export default function Comment({ comment }) {
   return (
     <Box
@@ -16,7 +18,7 @@ export default function Comment({ comment }) {
     >
       <Grid container flexWrap="nowrap">
         <Grid item sx={{ paddingRight: "1rem" }}>
-          <img src="/logo.png" alt="lgoog" width="50px" />
+          <img src={LHC} alt="lgoog" width="50px" />
         </Grid>
         <Grid item flexGrow="1">
           <Box>

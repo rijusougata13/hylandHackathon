@@ -80,6 +80,7 @@ export default function WhoToFollow({ user }) {
                 background: "#333",
               },
             }}
+            style={{ backgroundColor: "rgb(37, 150, 190)" }}
             variant="contained"
           >
             Take Appointment
