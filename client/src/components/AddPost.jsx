@@ -14,13 +14,22 @@ export default function AddPost() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [postText, setPostText] = useState("");
-  const handleAddPost = async () => {
+  const [file, setFile] = useState();
+
+  const handleAddPost = async (e) => {
     const data = await addPost({ text: postText });
     if (data) {
       dispatch(getPosts());
       setPostText("");
+      setFile(URL.createObjectURL(e.target.files[0]));
     }
+    
   };
+
+  // function handleChange(e) {
+  //   // console.log(e.target.files);
+  //   setFile(URL.createObjectURL(e.target.files[0]));
+  // }
   return (
     <Box padding="1rem 1rem 0 1rem" borderBottom="1px solid #ccc">
       <Grid container>
@@ -39,6 +48,7 @@ export default function AddPost() {
               placeholder="What's happening?"
               sx={{ width: "100%" }}
             />
+            <img src={file} style={{width: "20em"}} />
           </Box>
           <Box
             textAlign="right"
