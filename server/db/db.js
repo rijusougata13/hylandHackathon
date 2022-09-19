@@ -6,7 +6,7 @@ module.exports = async function (url) {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.info("Connected to Probook DB");
+    console.info("Connected to DB");
   } catch (error) {
     console.error("Something went wrong", error);
   }
