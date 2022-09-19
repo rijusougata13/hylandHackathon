@@ -10,6 +10,7 @@ export default function RegisterForm() {
     handle: "",
     email: "",
     password: "",
+    loginAs: ""
   });
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,6 +19,7 @@ export default function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(registerData)
     dispatch(registerUser(registerData));
   };
 
@@ -93,6 +95,7 @@ export default function RegisterForm() {
         value={value}
         onChange={(e) =>
           {setValue(e.target.value);
+            console.log(e.target.value);
             setRegisterData((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
