@@ -76,7 +76,7 @@ export default function LoginForm() {
           )}
         </Button>
       </form>
-      <Button
+      {/* <Button
         onClick={loginAsGuest}
         sx={{
           width: "100%",
@@ -88,7 +88,7 @@ export default function LoginForm() {
         color="primary"
       >
         {status === "loading" ? "Logging in..." : "Login as guest"}
-      </Button>
+      </Button> */}
     </>
   );
 }

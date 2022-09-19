@@ -36,7 +36,7 @@ export default function Login() {
           <img src={LHC} alt="Logo" style={{width: "12em"}} />
         </Box>
         {isLoginForm ? (
-          <Typography variant="h5">Login to your account</Typography>
+          <Typography variant="h5" >Login to your account</Typography>
         ) : (
           <Typography variant="h5">Create a new account</Typography>
         )}

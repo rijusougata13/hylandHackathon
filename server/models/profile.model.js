@@ -16,9 +16,9 @@ const profileSchema = new Schema({
   website: String,
   location: {
     type: String,
-    default: "The Universe",
+    default: "India",
   },
-  bio: { type: String, default: "This is bio." },
+  bio: { type: String, default: "Health Care Community" },
   dob: {
     type: Date,
   },
@@ -31,7 +31,7 @@ const profileSchema = new Schema({
   backgroundImageUrl: {
     type: String,
     default:
-      "https://res.cloudinary.com/dnboldv5r/image/upload/v1632958083/probook/i_Ocean-Quote-Twitter-_20Header_full_ap6zgw.jpg",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9jdG9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
   },
 });
 
