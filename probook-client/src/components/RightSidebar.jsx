@@ -1,18 +1,36 @@
 import { Search } from "@mui/icons-material";
 import { Input, Typography, Grid, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import WhoToFollow from "./WhoToFollow";
-import { Link } from "react-router-dom";
-import { getFollowings } from "../redux/followSlice";
+import WhoToAppoint from './WhoToAppoint'
+import { Link, useParams } from "react-router-dom";
+import { getFollowings,getFollowers } from "../redux/followSlice";
+import { getProfile } from "../redux/authSlice";
 
 export default function RightSidebar() {
   const [query, setQuery] = React.useState("");
   const { _id } = JSON.parse(localStorage.getItem("login"));
   const dispatch = useDispatch();
-  const { users, userStatus } = useSelector((state) => state.auth);
-  const { followingStatus, followings } = useSelector((state) => state.follow);
+  
+  useEffect(() => {
+    dispatch(getProfile(_id));
+  }, [dispatch, _id]);
+  useEffect(() => {
+    dispatch(getFollowings(_id));
+  }, [dispatch, _id]);
+  useEffect(() => {
+    dispatch(getFollowers(_id));
+  }, [dispatch, _id]);
+  const { users, userStatus,profile } = useSelector((state) => state.auth);
+  const { followingStatus, followings,followers } = useSelector((state) => state.follow);
+ 
+  // console.log(profile)
+  const [loginAs,setLoginAs] = useState(profile?.userId?.loginAs)
+  useEffect(()=>{
+    setLoginAs(profile?.userId?.loginAs)
+  })
   function queriedUsers() {
     return users.filter(
       (user) =>
@@ -20,14 +38,29 @@ export default function RightSidebar() {
         user.handle.toLowerCase().includes(query.toLowerCase())
     );
   }
+console.log(loginAs)
+ 
 
-  useEffect(() => {
-    dispatch(getFollowings(_id));
-  }, [dispatch, _id]);
-
-  function showToFollow() {
+  function showFollowers() {
     const filtered = users.filter((user) => user._id !== _id);
+   
+    //for doctors
+    return filtered.filter((item) => {
+      const index = followers.findIndex(
+        (follow) => follow.followerId !== item._id
+      );
+      if (index !== -1) {
+        return false;
+      }
+      return true;
+    });
+  }
 
+
+  function showFollowing() {
+    const filtered = users.filter((user) => user._id !== _id);
+// console.log(followings)
+//for patients
     return filtered.filter((item) => {
       const index = followings.findIndex(
         (follow) => follow.followingId === item._id
@@ -152,21 +185,31 @@ export default function RightSidebar() {
             margin: "1rem 0",
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Nearby Doctors
-          </Typography>
+          {loginAs === 'doctor' ? (
+         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Nearby Appointments 
+          </Typography>):(
+         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Nearby Doctors 
+          </Typography>)}
+
           <Box textAlign="center" marginTop="1rem">
             {(userStatus === "loading" || followingStatus === "loading") && (
               <CircularProgress size={20} color="primary" />
             )}
           </Box>
-          {userStatus === "success" &&
+
+          {userStatus === "success" && loginAs === 'doctor' ? (showFollowers().slice(0, 7).map((item) => item.loginAs === 'patient' && <WhoToAppoint key={item._id} user={item}/>
+          )):(showFollowing().slice(0, 7).map((item) => item.loginAs === 'doctor' && <WhoToFollow key={item._id} user={item}/>))}
+
+
+          {/* {userStatus === "success" &&
             showToFollow()
               .slice(0, 7)
               .map((item) => 
               item.loginAs==='doctor' &&
               
-              <WhoToFollow key={item._id} user={item} />)}
+              <WhoToFollow key={item._id} user={item} />)} */}
         </Box>
       </Box>
     </Box>
