@@ -44,6 +44,7 @@ const postSchema = new Schema(
     },
     imageUrl: {
       type: String,
+      default: "",
     },
   },
   { timestamps: true }
